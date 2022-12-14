@@ -3,6 +3,7 @@
     "lint": "tslint -t stylish --project \"tsconfig.json\"",
     "test": "jest --forceExit --verbose",
     "test:watch": "jest --watch",
+    "task2": "ts-node --esm task2/index.ts",
     "task3": "ts-node --esm task3/index.ts"
   },
   "devDependencies": {
