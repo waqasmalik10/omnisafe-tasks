@@ -1,4 +1,16 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards, ValidationPipe } from '@nestjs/common';
+import {
+    BadRequestException,
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Post,
+    Put,
+    Query,
+    UseGuards,
+    ValidationPipe,
+} from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/auth.guard';
 import { GetUser } from 'src/common/decorators/getUser';
 import { EventService } from './event.service';
@@ -7,24 +19,18 @@ import { StatusDto } from './models/dtos/status';
 import { UpdateEventDto } from './models/dtos/updateEvent';
 
 @Controller('events')
-
 export class EventController {
-    constructor(
-        private readonly eventService: EventService
-    ){}
+    constructor(private readonly eventService: EventService) {}
 
     @Get()
-    getEvents(
-        @Query(ValidationPipe) query: StatusDto
-    ){
-        const{status, limit, offset} = query;
-        return this.eventService.getEvents(status, {limit, offset})
+    getEvents(@Query(ValidationPipe) query: StatusDto) {
+        const { status, limit, offset } = query;
+        return this.eventService.getEvents(status, { limit, offset });
     }
 
     @Get('types')
-    getEventTypes(){
-        
-        return this.eventService.getEventTypes()
+    getEventTypes() {
+        return this.eventService.getEventTypes();
     }
 
     // @Get()
@@ -43,23 +49,21 @@ export class EventController {
     @Post()
     createEvent(
         @Body(ValidationPipe) eventDto: CreateEventDto,
-        @GetUser() user
-    ){
-        return this.eventService.createEvent(eventDto, user)
+        @GetUser() user,
+    ) {
+        return this.eventService.createEvent(eventDto, user);
     }
 
     @Put(':id')
     updateEvent(
         @Param('id', ValidationPipe) id: string,
         @Body(ValidationPipe) updateEvent: UpdateEventDto,
-    ){
-        return this.eventService.updateEvent(id, updateEvent)
+    ) {
+        return this.eventService.updateEvent(id, updateEvent);
     }
 
     @Delete(':id')
-    deleteEvent(
-        @Param('id', ValidationPipe) id: string
-    ){
-        return this.eventService.deleteEvent(id)
+    deleteEvent(@Param('id', ValidationPipe) id: string) {
+        return this.eventService.deleteEvent(id);
     }
 }

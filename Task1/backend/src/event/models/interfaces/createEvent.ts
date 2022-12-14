@@ -1,5 +1,4 @@
-export interface CreateEventInterface{
-    
+export interface CreateEventInterface {
     name: string;
 
     description: string;

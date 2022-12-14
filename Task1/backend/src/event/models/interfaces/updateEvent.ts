@@ -1,5 +1,4 @@
-export interface UpdateEventInterface{
-    
+export interface UpdateEventInterface {
     name?: string;
 
     description?: string;

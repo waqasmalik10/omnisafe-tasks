@@ -18,3 +18,4 @@ export class CreateEventDto{
     @IsMongoId()
     eventType: string;
 }
+

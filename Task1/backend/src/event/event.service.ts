@@ -1,4 +1,10 @@
-import { BadRequestException, ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import {
+    BadRequestException,
+    ConflictException,
+    Injectable,
+    InternalServerErrorException,
+    NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { isValidObjectId, Model } from 'mongoose';
 import { PaginationInterface } from 'src/common/interfaces/pagination';
@@ -18,40 +24,38 @@ export class EventService {
         private userModel: Model<User>,
 
         @InjectModel(schemaRefs.eventType)
-        private eventTypeModel: Model<EventType>
-    ){}
+        private eventTypeModel: Model<EventType>,
+    ) {}
 
-    async getEvents(status: string, pagination: PaginationInterface){
-
-        let condition: any = {$gte: new Date().toISOString()}
-        if(status === 'past'){
-            condition = {$lt: new Date().toISOString()}
+    async getEvents(status: string, pagination: PaginationInterface) {
+        let condition: any = { $gte: new Date().toISOString() };
+        if (status === 'past') {
+            condition = { $lt: new Date().toISOString() };
         }
 
-        console.log({ condition })
-        try{
+        console.log({ condition });
+        try {
             const allEvents = await this.eventModel.find({
                 eventDate: condition
             })
             .populate('eventType userId', '-updatedAt -createdAt -password -salt');
 
             return allEvents;
-        }catch(err){
+        } catch (err) {
             throw new InternalServerErrorException(err);
         }
     }
 
-    async getEventTypes(){
-
+    async getEventTypes() {
         const eventTypes = await this.eventTypeModel.find();
 
         return eventTypes;
     }
 
-    async createEventType(){
+    async createEventType() {
         await this.eventTypeModel.create({
-            name: 'Cultural Event'
-        })
+            name: 'Cultural Event',
+        });
     }
 
     // async getAllEvents(){
@@ -82,66 +86,69 @@ export class EventService {
     //     return event;
     // }
 
-    async createEvent(createEvent: CreateEventInterface, user: any){
-        const{id} = user;
+    async createEvent(createEvent: CreateEventInterface, user: any) {
+        const { id } = user;
 
-        const{name} = createEvent;
-        const isNameExists = await this.eventModel.findOne({name: { $regex: `${name}$`, $options: 'i'}});
+        const { name } = createEvent;
+        const isNameExists = await this.eventModel.findOne({
+            name: { $regex: `${name}$`, $options: 'i' },
+        });
 
-        if(isNameExists){
-            throw new ConflictException("event name already exists! It should be unique!")
+        if (isNameExists) {
+            throw new ConflictException(
+                'event name already exists! It should be unique!',
+            );
         }
 
-        try{
+        try {
             const newEvent = await this.eventModel.create({
                 userId: id,
-                ...createEvent
+                ...createEvent,
             });
-    
+
             return newEvent;
         }catch(err){
             throw new InternalServerErrorException(err);
         }
-
     }
 
-    async updateEvent(id: string, updateEvent: UpdateEventInterface){
-
+    async updateEvent(id: string, updateEvent: UpdateEventInterface) {
         const isValid = isValidObjectId(id);
 
-        if(!isValid){
-            throw new BadRequestException("id must be valid mongodb id!")
+        if (!isValid) {
+            throw new BadRequestException('id must be valid mongodb id!');
         }
 
-        const event = await this.eventModel.findByIdAndUpdate(id, {
-            $set: updateEvent
-        }, {returnOriginal: false});
+        const event = await this.eventModel.findByIdAndUpdate(
+            id,
+            {
+                $set: updateEvent,
+            },
+            { returnOriginal: false },
+        );
 
-        if(!event){
-            throw new NotFoundException("event does not exist!");
+        if (!event) {
+            throw new NotFoundException('event does not exist!');
         }
 
-        return !!event
-
+        return !!event;
     }
 
-    async deleteEvent(id: string){
-
+    async deleteEvent(id: string) {
         const isValid = isValidObjectId(id);
 
-        if(!isValid){
-            throw new BadRequestException("id must be valid mongodb id!")
+        if (!isValid) {
+            throw new BadRequestException('id must be valid mongodb id!');
         }
 
-        const event = await this.eventModel.findOne({_id: id});
+        const event = await this.eventModel.findOne({ _id: id });
 
-        if(!event){
-            throw new NotFoundException("event does not exist!");
+        if (!event) {
+            throw new NotFoundException('event does not exist!');
         }
 
         const deleted = await event.delete();
 
-        return {success: !!deleted};
-
+        return { success: !!deleted };
     }
 }
