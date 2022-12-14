@@ -1,8 +1,9 @@
 import { FC } from "react";
 import Input from "Common/Input"
+import ErrorDescription from "Common/Error";
 
 const AccountSession: FC<any> = (props) => {
-    const { name, surname, oldPassword, password, confirmPassword, errors, onChangeHandler } = props;
+    const { name, surname, oldPassword, password, confirmPassword, errors, onChangeHandler, onBlur, touched } = props;
 
     return (
         <div className="sm:flex">
@@ -17,13 +18,14 @@ const AccountSession: FC<any> = (props) => {
                         <label htmlFor="email" className="text-left block text-sm font-normal text-gray-900">First Name</label>
                         <div className="mt-1">
                             <Input
-                                type="text"
                                 onChange={onChangeHandler}
+                                onBlur={onBlur}
                                 name="name"
                                 value={name}
                                 className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                 placeholder="Name"
                             />
+                            {touched.name && errors.name && <ErrorDescription text={errors.name} />}
                         </div>
                     </div>
 
@@ -31,13 +33,14 @@ const AccountSession: FC<any> = (props) => {
                         <label htmlFor="email" className="text-left block text-sm font-normal text-gray-900">Last Name</label>
                         <div className="mt-1">
                             <Input
-                                type="text"
                                 onChange={onChangeHandler}
                                 name="surname"
                                 value={surname}
                                 className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                                 placeholder="Surname"
+                                onBlur={onBlur}
                             />
+                            {touched.surname && errors.surname && <ErrorDescription text={errors.surname} />}
                         </div>
                     </div>
                 </div>
@@ -53,8 +56,10 @@ const AccountSession: FC<any> = (props) => {
                                     name="oldPassword" 
                                     value={oldPassword} 
                                     className="shadow-sm focus:ring-blue-700 focus:border-blue-700 block w-full sm:text-sm border-gray-300 rounded-md" 
-                                    placeholder="Enter your old password" 
+                                    placeholder="Enter your old password"
+                                    onBlur={onBlur}
                                 />
+                                {touched.oldPassword && errors.oldPassword && <ErrorDescription text={errors.oldPassword} />}
                             </div>
                         </div>
                         <div className="sm:w-3/6 px-2 mb-4">
@@ -68,23 +73,13 @@ const AccountSession: FC<any> = (props) => {
                                     value={password} 
                                     className="shadow-sm focus:ring-blue-700 focus:border-blue-700 block w-full sm:text-sm border-gray-300 rounded-md" 
                                     placeholder="Password" 
+                                    onBlur={onBlur}
                                 />
+                                {touched.password && errors.password && <ErrorDescription text={errors.password} />}
                             </div>
                             <div className="text-left text-sm text-gray-600">Must be atleast 8 characters</div>
                         </div>
-                        <div className="sm:w-3/6 px-2 mb-4">
-                            <label htmlFor="email" className="text-left block text-sm font-normal text-gray-900">Re-type Password</label>
-                            <div className="mt-1">
-                                <Input 
-                                    type="password" 
-                                    onChange={onChangeHandler} 
-                                    name="confirmPassword" 
-                                    value={confirmPassword}
-                                    className="shadow-sm focus:ring-blue-700 focus:border-blue-700 block w-full sm:text-sm border-gray-300 rounded-md" 
-                                    placeholder="" 
-                                />
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -13,3 +13,10 @@ export const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Please, enter your email'),
     password: Yup.string().min(8, 'Too short!').required('Please, enter your password'),
 });
+
+
+export const UpdateUserSchema = Yup.object().shape({
+  name: Yup.string(),
+  surname: Yup.string(),
+  password: Yup.string().min(8, 'Too short!')
+});
