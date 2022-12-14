@@ -36,8 +36,9 @@ export class EventService {
         console.log({ condition });
         try {
             const allEvents = await this.eventModel.find({
-                eventDate: condition,
-            });
+                eventDate: condition
+            })
+            .populate('eventType userId', '-updatedAt -createdAt -password -salt');
 
             return allEvents;
         } catch (err) {
@@ -105,8 +106,8 @@ export class EventService {
                 ...createEvent,
             });
 
-            return { success: !!newEvent };
-        } catch (err) {
+            return newEvent;
+        }catch(err){
             throw new InternalServerErrorException(err);
         }
     }

@@ -6,6 +6,7 @@ interface Props{
     name: string;
     value: string;
     placeholder?: string;
+    min?: any
 }
 
 const Input = ({
@@ -15,7 +16,8 @@ const Input = ({
     onChange,
     name,
     value,
-    placeholder
+    placeholder,
+    min
 }: Props) => {
 
     return (
@@ -31,6 +33,7 @@ const Input = ({
                 "border border-gray-300 text-gray-900 sm:text-sm rounded-md shadow-sm block w-full p-2 dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:ring-indigo-500 focus:border-indigo-500 focus:visible:border-indigo-500"
             } 
             placeholder={placeholder || ""}
+            min={min || ""}
         />
     )
 }

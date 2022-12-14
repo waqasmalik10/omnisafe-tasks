@@ -32,12 +32,16 @@ export const authSlice = createSlice({
         },
         setLoading: (state, action:PayloadAction<boolean>) => {
             state.isLoading = action.payload
-        }
+        },
+        clearState: (state) => {
+            state.isLoading = false;
+            state.user = null!
+        },
     }
 })
 export default authSlice.reducer
 
-export const { setLoading, setUser, logout} = authSlice.actions
+export const { setLoading, setUser, logout, clearState } = authSlice.actions
 
 export const selectUser = (state:AppState): User => state.authReducer.user;
 
@@ -80,4 +84,10 @@ export const signupAction = (requestData: SignupData) => async (dispatch: AppDis
 
 
     return true;
+}
+
+export const logoutAction = () => async (dispatch: AppDispatch) => {
+
+    localStorage.removeItem('token');
+    dispatch(clearState())
 }

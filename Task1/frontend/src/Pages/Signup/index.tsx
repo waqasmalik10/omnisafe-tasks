@@ -39,13 +39,13 @@ const Signup = () => {
 
     return (
         <PublicLayout>
-            <div className="form-width mx-6 mb-20 max-w-7xl mx-auto mt-5 space-y-8 space-y-8 divide-y divide-gray-200 px-3 sm:px-3">
+            <div className="form-width mx-6 mb-20 mx-auto mt-5 space-y-8 space-y-8 divide-y divide-gray-200 px-3 sm:px-3">
                 <form onSubmit={handleSubmit}>
                     
                     <div className="space-y-6 sm:space-y-5">
                         <div className="min-h-screen flex flex-col justify-center pb-12 sm:px-6 lg:px-8">
                             <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                                <h3 className="text-lg leading-6 font-bold text-gray-900">
+                                <h3 className="text-center text-lg leading-6 font-bold text-gray-900">
                                     Create your account
                                 </h3>
                             </div>
@@ -118,7 +118,7 @@ const Signup = () => {
                                         <div className="text-sm flex items-center justify-between">
                                             <p>Already have an account?</p>
                                             <NavLink
-                                                className="font-medium text-blue-700 hover:text-blue-600 hover:underline"
+                                                className="font-medium text-blue-700 hover:text-blue-600 hover:underline ml-1"
                                                 to='/login'
                                             >
                                                Login

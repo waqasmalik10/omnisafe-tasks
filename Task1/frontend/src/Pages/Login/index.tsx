@@ -39,13 +39,13 @@ const Login = () => {
 
     return (
         <PublicLayout>
-            <div className="form-width mx-6 mb-20 max-w-7xl mx-auto space-y-8 space-y-8 divide-y divide-gray-200">
+            <div className="form-width mx-6 mb-20 mx-auto space-y-8 space-y-8 divide-y divide-gray-200">
                 <form onSubmit={handleSubmit}>
                     <div>
                         <div className="space-y-6 sm:space-y-5">
                             <div className="min-h-screen flex flex-col justify-center pb-12 sm:px-6 lg:px-8">
                                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                                    <h3 className="text-lg leading-6 font-bold text-gray-900">
+                                    <h3 className="text-center text-lg leading-6 font-bold text-gray-900">
                                         Sign in to your account
                                     </h3>
                                 </div>
@@ -109,9 +109,9 @@ const Login = () => {
                                         {/* {this.props.auth.isError ? (<p className="w-full mt-8 ml-3 ml-auto mr-auto block justify-center py-2 px-4 text-sm font-medium text-red-700">{this.props.auth.errorMessage}</p>) : null}
                                         <div className="mt-4 text-center text-gray-900 text-base font-medium">Create An Account? <span className="font-bold text-blue-700 hover:text-blue-600"><a className="hover:underline" href={`${process.env.REACT_APP_FRONTEND}/sign-up`}>click here</a> </span></div> */}
                                         <div className="mt-2 text-sm flex items-center">
-                                            <p>Don't have an account?</p>
+                                            <p className=''>Don't have an account?</p>
                                             <NavLink
-                                                className="font-medium text-blue-700 hover:text-blue-600 hover:underline pl-2"
+                                                className="font-medium text-blue-700 hover:text-blue-600 hover:underline ml-1"
                                                 to='/signup'
                                             >
                                                 Signup

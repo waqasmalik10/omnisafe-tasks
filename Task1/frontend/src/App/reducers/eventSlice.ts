@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction} from '@reduxjs/toolkit'
 import { AppDispatch, AppState } from "App/store";
-import { SignupData } from 'types/Auth';
-import { getEvents, getEventTypes } from 'Services/Event';
+import { createEvent, getEvents, getEventTypes } from 'Services/Event';
 import { Pagination } from 'types/pagination';
-import { Event, EventType } from 'types/Event';
+import { CreateEvent, Event, EventType } from 'types/Event';
 
 
 interface EventSlice{
@@ -69,18 +68,17 @@ export const getEventsAction = (status: string, pagination: Pagination) => async
 }
 
 
-export const createEvent = (requestData: SignupData) => async (dispatch: AppDispatch) => {
+export const createEventAction = (eventData: CreateEvent) => async (dispatch: AppDispatch) => {
 
-    dispatch(setLoading(true))
+    dispatch(setLoading(true));
+    
+    const event = await createEvent(eventData);
 
-    // const success = await signup(requestData);
+    if(!event){
+        return false;
+    }
 
-    dispatch(setLoading(false))
-
-    // if(!success){
-    //     return false;
-    // }
-
+    // dispatch()
 
     return true;
 }
@@ -89,5 +87,5 @@ export const getEventTypesAction = () => async (dispatch: AppDispatch) => {
 
     const eventTypes = await getEventTypes();
 
-    dispatch(setEventTypes(eventTypes));
+    dispatch(setEventTypes(eventTypes as EventType[]));
 }
