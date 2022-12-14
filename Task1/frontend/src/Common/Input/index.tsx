@@ -6,7 +6,8 @@ interface Props{
     name: string;
     value: string;
     placeholder?: string;
-    min?: any
+    min?: string;
+    minLength?: number; 
 }
 
 const Input = ({
@@ -17,7 +18,8 @@ const Input = ({
     name,
     value,
     placeholder,
-    min
+    min,
+    minLength
 }: Props) => {
 
     return (
@@ -25,6 +27,7 @@ const Input = ({
             type={type || 'text'} 
             onBlur={onBlur} 
             onChange={onChange} 
+            minLength={minLength || undefined}
             name={name} 
             value={value} 
             className={

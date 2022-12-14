@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Logo from 'assets/images/logo.png'
 import { useAppDispatch, useAppSelector } from 'App/hooks';
 import { logoutAction, selectUser } from 'App/reducers/authSlice';
 
 const Header = () => {
+
+    const dropdownRef = useRef<any>();
 
     const navigate = useNavigate();
 
@@ -19,13 +21,31 @@ const Header = () => {
     }
 
     const onLogout = () => {
-        console.log('clicked');
         dispatch(logoutAction());
         navigate('/login')
     }
 
     const user = useAppSelector(selectUser);
     const {name=''} = user || {};
+
+    useEffect(() => {
+
+        if(!showDropdown){
+            return
+        }
+        function handleClickOutside(event:any) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+        }
+       
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+
+    },[showDropdown, dropdownRef])
 
     return (
         <header className="bg-white shadow-sm fixed z-20 lg:overflow-y-visible w-full top-0">
@@ -78,14 +98,14 @@ const Header = () => {
                             {/* <NotificationsDorpdown /> */}
 
                             <div className="hidden sm:flex sm:items-center">
-                                <div className="ml-3 relative">
+                                <div ref={dropdownRef} className="ml-3 relative">
                                     <div>
                                         <span onClick={onClickLabel} className="cursor-pointer companyNameLink font-medium hover:underline text-blue-500 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150 heading-font">{token ? name : ''}</span>
                                         
                                     </div>
                                     <div style={{ display: showDropdown ? "" : "none" }} className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex={-1}>
                                         {true && (
-                                            <NavLink to="/settings" className="block px-4 py-2 text-sm text-gray-700 text-left" role="menuitem" tabIndex={-1} id="user-menu-item-1">Settings</NavLink>
+                                            <NavLink to="#" className="block px-4 py-2 text-sm text-gray-700 text-left" role="menuitem" tabIndex={-1} id="user-menu-item-1">Settings</NavLink>
                                         )}
                                         <NavLink to="/login" onClick={onLogout} className=" text-left block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-2">Sign out</NavLink>
                                     </div>

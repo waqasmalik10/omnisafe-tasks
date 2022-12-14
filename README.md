@@ -24,6 +24,14 @@ npm run prettier
 npm run test:watch
 ```
 
+## Task 1:
+### Run Seed
+```
+cd /task1/backend
+npm run seed
+```
+
+
 ## Task 2:
 ```
 npm run task2

@@ -2,8 +2,8 @@ import React from 'react'
 import { TailSpin } from  'react-loader-spinner';
 
 interface Props{
-    height?: string;
-    width?: string;
+    height?: string|number;
+    width?: string|number;
     color?: string;
     wrapperStyle?: any;
 }

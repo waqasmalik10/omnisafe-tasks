@@ -27,7 +27,7 @@ export class UserService {
             { returnOriginal: false },
         );
 
-        return { success: !!updatedUser };
+        return updatedUser;
     }
 
     async getUser(userId: string) {

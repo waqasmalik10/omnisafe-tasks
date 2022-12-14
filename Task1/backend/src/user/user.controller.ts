@@ -12,7 +12,7 @@ import { GetUser } from 'src/common/decorators/getUser';
 import { UpdateUserDto } from './models/dtos/updateUser';
 import { UserService } from './user.service';
 
-@Controller('user')
+@Controller('users')
 @UseGuards(JwtAuthGuard)
 export class UserController {
     constructor(private userSrevice: UserService) {}

@@ -9,7 +9,7 @@ async function bootstrap() {
 
     mongoose.set('debug', true);
 
-    const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || 8000;
 
     await app.listen(PORT);
 }
