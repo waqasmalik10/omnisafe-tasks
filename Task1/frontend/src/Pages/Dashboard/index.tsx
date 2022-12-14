@@ -2,6 +2,7 @@ import ProtectedLayout from 'Common/PrivateLayout';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import React from 'react';
 import ActiveEvents from 'Compoenents/Dashboard/ActiveEvents';
+import PastEvents from 'Compoenents/Dashboard/PastEvents';
 
 
 const Dashboard = () => {
@@ -34,6 +35,7 @@ const Dashboard = () => {
                                     <ActiveEvents />
                                 </TabPanel>
                                 <TabPanel>
+                                    <PastEvents />
                                 </TabPanel>
                             </div>
                         </div>

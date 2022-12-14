@@ -1,23 +1,25 @@
 import { useAppDispatch, useAppSelector } from "App/hooks";
-import { getEventsAction, selectActiveEvents } from "App/reducers/eventSlice";
+import { getEventsAction, selectPastEvents } from "App/reducers/eventSlice";
 import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import Table from "./Table";
 
 
-const ActiveEvents = () =>{
+const PastEvents = () =>{
 
     const dispatch = useAppDispatch();
 
-    const activeEvents = useAppSelector(selectActiveEvents);
+    const pastEvents = useAppSelector(selectPastEvents);
 
     const[isAddEvent, setIsAddEvent] = useState(false);
 
     useEffect(() => {
-        dispatch(getEventsAction('active', {limit:10, offset:0}));
+        dispatch(getEventsAction('past', {limit:10, offset:0}));
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
+
+    // const isLoading = useAppSelector(selectIsLoading)
 
     return (
         <>
@@ -43,10 +45,10 @@ const ActiveEvents = () =>{
 
                   <div className="hideScrollBar align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
 
-                    <Table events={activeEvents} />
+                    <Table events={pastEvents} />
                     
 
-                    {activeEvents.length === 0 && (
+                    {pastEvents.length === 0 && (
                       <div className="px-6 py-4 text-center no-order">
                         There is no event
                       </div>
@@ -68,4 +70,4 @@ const ActiveEvents = () =>{
 }
 
 
-export default ActiveEvents;
+export default PastEvents;

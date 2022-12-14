@@ -1,9 +1,9 @@
 import './App.css';
 // import './assets/css/custom.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from 'Compoenents/Login';
 import Signup from 'Pages/Signup';
 import Dashboard from 'Pages/Dashboard';
+import Login from 'Pages/Login';
 
 function App() {
   return (

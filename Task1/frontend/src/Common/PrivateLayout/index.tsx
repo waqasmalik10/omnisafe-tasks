@@ -4,6 +4,7 @@ import jwtDecode from "jwt-decode";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setAuthToken } from "utils/setAuthToken";
 
 interface Props{
     children: React.ReactNode
@@ -23,6 +24,7 @@ const ProtectedLayout = ({children}: Props) => {
             return;
         }
 
+        setAuthToken(token);
         const {user} = jwtDecode(token) as any;
         dispatch(setUser(user));
 

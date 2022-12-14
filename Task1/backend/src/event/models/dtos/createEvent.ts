@@ -1,4 +1,4 @@
-import { IsDate, IsDateString, IsNotEmpty, IsString } from "class-validator";
+import { IsDate, IsDateString, IsMongoId, IsNotEmpty, IsString } from "class-validator";
 
 export class CreateEventDto{
 
@@ -12,5 +12,9 @@ export class CreateEventDto{
 
     @IsDateString()
     @IsNotEmpty()
-    eventDate: string
+    eventDate: string;
+
+    @IsNotEmpty()
+    @IsMongoId()
+    eventType: string;
 }

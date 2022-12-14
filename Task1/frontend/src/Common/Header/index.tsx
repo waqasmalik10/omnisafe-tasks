@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Logo from 'assets/images/logo.png'
-import { useAppSelector } from 'App/hooks';
-import { selectUser } from 'App/reducers/authSlice';
+import { useAppDispatch, useAppSelector } from 'App/hooks';
+import { logoutAction, selectUser } from 'App/reducers/authSlice';
 
 const Header = () => {
+
+    const navigate = useNavigate();
+
+    const dispatch = useAppDispatch();
 
     const[showDropdown, setShowDropdown] = useState(false)
 
@@ -12,6 +16,12 @@ const Header = () => {
 
     const onClickLabel = () => {
         setShowDropdown(prevState => !prevState);
+    }
+
+    const onLogout = () => {
+        console.log('clicked');
+        dispatch(logoutAction());
+        navigate('/login')
     }
 
     const user = useAppSelector(selectUser);
@@ -77,7 +87,7 @@ const Header = () => {
                                         {true && (
                                             <NavLink to="/settings" className="block px-4 py-2 text-sm text-gray-700 text-left" role="menuitem" tabIndex={-1} id="user-menu-item-1">Settings</NavLink>
                                         )}
-                                        <NavLink to="#" onClick={() => {}} className=" text-left block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-2">Sign out</NavLink>
+                                        <NavLink to="/login" onClick={onLogout} className=" text-left block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex={-1} id="user-menu-item-2">Sign out</NavLink>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +118,7 @@ const Header = () => {
                 <div className="pt-4 pb-3 border-t border-gray-200">
                     <div className="mt-3 space-y-1">
                         <NavLink to="/settings" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 text-left">Settings</NavLink>
-                        <NavLink to="#" onClick={() => {}} className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 text-left">Sign out</NavLink>
+                        <button onClick={onLogout} className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 text-left">Sign out</button>
                     </div>
                 </div>
             </div>

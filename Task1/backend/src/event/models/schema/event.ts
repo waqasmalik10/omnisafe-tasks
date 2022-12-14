@@ -18,6 +18,9 @@ export class Event extends Document {
 
     @Prop({required: true})
     eventDate: Date;
+
+    @Prop({required: true, type: Types.ObjectId, ref: schemaRefs.eventType})
+    eventType: string;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

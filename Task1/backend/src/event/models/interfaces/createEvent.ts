@@ -4,5 +4,7 @@ export interface CreateEventInterface{
 
     description: string;
 
-    eventDate: string
+    eventDate: string;
+
+    eventType: string;
 }
