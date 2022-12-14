@@ -1,10 +1,34 @@
 # Omnisafe Tasks
 
-## Task 2:
+There is a seprate folder (task1, task2, task3 ) for each task. 
 
+These following package setup.
+- Typescript
+- Prettier
+- Readme.MD
+- Jest
+- tslint
+
+## tslint
+```
+npm run lint
+```
+
+## prettier
+```
+npm run prettier
+```
+
+## Run Tests
+```
+npm run test:watch
+```
+
+## Task 2:
 ```
 npm run task2
 ```
+
 This command will read JSON from files and will return array of people.
 
 
@@ -14,3 +38,4 @@ npm run task3 <number>
 ```
 
 This command will take desired number as parameter and will use binary search to find the place of the specific number.
+
