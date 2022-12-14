@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+    BadRequestException,
+    Injectable,
+    NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { isValidObjectId, Model } from 'mongoose';
 import { schemaRefs } from 'src/schemaRefs';
@@ -9,35 +13,37 @@ import { User } from './models/schema/user';
 export class UserService {
     constructor(
         @InjectModel(schemaRefs.user)
-        private userModel: Model<User>
-    ){}
+        private userModel: Model<User>,
+    ) {}
 
-    async updateUser(updateUser: UpdateUserInterface, user: any){
-        const{id} = user;
+    async updateUser(updateUser: UpdateUserInterface, user: any) {
+        const { id } = user;
 
-        const updatedUser = await this.userModel.findByIdAndUpdate(id, {
-            $set: updateUser
-        }, {returnOriginal: false});
+        const updatedUser = await this.userModel.findByIdAndUpdate(
+            id,
+            {
+                $set: updateUser,
+            },
+            { returnOriginal: false },
+        );
 
-        return {success: !!updatedUser}
+        return { success: !!updatedUser };
     }
 
-    async getUser(userId: string){
-        
+    async getUser(userId: string) {
         const isValidMongodbId = isValidObjectId(userId);
 
-        if(!isValidMongodbId){
-            throw new BadRequestException("id must be a mongodb id!");
+        if (!isValidMongodbId) {
+            throw new BadRequestException('id must be a mongodb id!');
         }
 
-        const user:any = await this.userModel.findById(userId);
+        const user: any = await this.userModel.findById(userId);
 
-        if(!user){
-            throw new NotFoundException("user does not exists!")
+        if (!user) {
+            throw new NotFoundException('user does not exists!');
         }
 
-        const {password, salt, ...restUser} = user._doc;
+        const { password, salt, ...restUser } = user._doc;
         return restUser;
-        
     }
 }

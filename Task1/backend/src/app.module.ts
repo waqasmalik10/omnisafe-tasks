@@ -8,16 +8,16 @@ import { EventModule } from './event/event.module';
 import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true
-    }),
-    AuthModule,
-    MongooseModule.forRoot('mongodb://localhost/omnisafe'),
-    EventModule,
-    UserModule,
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+    imports: [
+        ConfigModule.forRoot({
+            isGlobal: true,
+        }),
+        AuthModule,
+        MongooseModule.forRoot('mongodb://localhost/omnisafe'),
+        EventModule,
+        UserModule,
+    ],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}

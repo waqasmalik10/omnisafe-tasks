@@ -5,18 +5,15 @@ import { SignupDto } from './models/dtos/signup';
 
 @Controller('auth')
 export class AuthController {
-    constructor(
-        private readonly authService: AuthService
-    ){}
+    constructor(private readonly authService: AuthService) {}
 
     @Post('login')
-    login(@Body(ValidationPipe) loginData: LoginDTO){
+    login(@Body(ValidationPipe) loginData: LoginDTO) {
         return this.authService.login(loginData);
     }
 
-
     @Post('signup')
-    signup(@Body(ValidationPipe) signupData: SignupDto){
+    signup(@Body(ValidationPipe) signupData: SignupDto) {
         return this.authService.signup(signupData);
     }
 }

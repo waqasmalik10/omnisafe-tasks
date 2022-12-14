@@ -1,7 +1,6 @@
-import { IsNumberString, IsOptional } from "class-validator";
+import { IsNumberString, IsOptional } from 'class-validator';
 
-export class PaginationDto{
-
+export class PaginationDto {
     @IsOptional()
     @IsNumberString()
     limit: string;

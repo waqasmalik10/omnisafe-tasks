@@ -3,14 +3,14 @@ import mongoose from 'mongoose';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule);
 
-  app.enableCors();
+    app.enableCors();
 
-  mongoose.set('debug', true);
+    mongoose.set('debug', true);
 
-  const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || 3000;
 
-  await app.listen(PORT);
+    await app.listen(PORT);
 }
 bootstrap();
