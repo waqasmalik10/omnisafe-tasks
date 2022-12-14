@@ -4,3 +4,10 @@ export interface User{
     name: string;
     surname: string;
 }
+
+
+export interface UpdateUser{
+    name?: string;
+    surname?: string;
+    password?: string;
+}

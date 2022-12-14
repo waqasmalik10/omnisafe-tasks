@@ -19,7 +19,7 @@ export class UserService {
             $set: updateUser
         }, {returnOriginal: false});
 
-        return {success: !!updatedUser}
+        return updatedUser;
     }
 
     async getUser(userId: string){

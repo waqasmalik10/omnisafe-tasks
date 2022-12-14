@@ -3,8 +3,8 @@ import { AppDispatch, AppState } from "App/store";
 import { setAuthToken } from "utils/setAuthToken";
 import jwtDecode from 'jwt-decode';
 import { LoginData, SignupData } from 'types/Auth';
-import { login, signup } from 'Services/Auth';
-import { User } from 'types/User';
+import { login, signup, updateUser } from 'Services/Auth';
+import { UpdateUser, User } from 'types/User';
 
 
 interface AuthSlice{
@@ -90,4 +90,21 @@ export const logoutAction = () => async (dispatch: AppDispatch) => {
 
     localStorage.removeItem('token');
     dispatch(clearState())
+}
+
+export const updateUserAction = (userData: UpdateUser) => async (dispatch: AppDispatch) => {
+
+    dispatch(setLoading(true))
+
+    const updatedUser = await updateUser(userData);
+
+    dispatch(setLoading(false))
+
+    if(!updatedUser){
+        return false;
+    }
+
+    dispatch(setUser(updateUser));
+
+    return true;
 }
