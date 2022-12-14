@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "prettier": "npx prettier --write **/*.ts",
     "lint": "tslint -t stylish --project \"tsconfig.json\"",
     "test": "jest --forceExit --verbose",
     "test:watch": "jest --watch",
