@@ -60,8 +60,7 @@ const EventModal = ({closeModal}: Props) => {
                 <form onSubmit={handleSubmit}>
                     <div className="max-w-7xl mx-auto bg-white mb-5">
                         <div className="space-y-6 sm:space-y-5">
-                            <div className="sm:flex">
-                                <div className="sm:w-9/12">
+                                <div >
                                     <div className="w-full px-2 mb-4">
                                         <label
                                             htmlFor="eventType"
@@ -152,7 +151,6 @@ const EventModal = ({closeModal}: Props) => {
                                         </div>
                                     </div> 
                                 </div>
-                            </div>
                         </div>
                     </div>
                     {/* {customerSubmitFormLoader ? (
