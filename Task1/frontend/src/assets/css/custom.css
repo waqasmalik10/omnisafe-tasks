@@ -1,0 +1,68 @@
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+.form-width {
+	max-width: 76rem;
+}
+
+.time-slot-tabs .time-section {
+	margin-left: 0 !important;
+}
+
+.side-bar-style > div:nth-child(2) {
+	z-index: 9999;
+}
+
+@media (min-width:640px) {
+	.top-1-bg-white {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+}
+
+@media (min-width: 1250px) and (max-width: 1300px) {
+	.top-1-bg-white {
+		padding-left: 30px!important;
+	}
+}
+
+@media (min-width: 1150px) and (max-width: 1250px) {
+	.top-1-bg-white {
+		padding-left: 15px!important;
+	}
+}
+
+@media (min-width:1024px) and (max-width:1149px){
+	.top-1-bg-white {
+		padding-left: 3.75rem !important;
+		padding-right: 3.75rem !important;
+	}
+}
+
+@media (min-width: 1050px) and (max-width: 1100px) {
+	.top-1-bg-white {
+		padding-left: 15px!important;
+	}
+}
+
+
+
+
+@media (min-width: 576px) {
+	.cancel-appointment {
+		width: 310px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.slide-over {
+		width: 100%;
+	}
+}
+
+@media (min-width: 1200px) {
+	.slide-over {
+		width: 40%;
+	}
+}
