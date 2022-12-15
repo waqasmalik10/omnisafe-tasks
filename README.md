@@ -31,6 +31,13 @@ cd /task1/backend
 npm run seed
 ```
 
+### Dummy User
+```
+donald.trump@gmail.com
+qwQW12!@
+```
+
+
 
 ## Task 2:
 ```

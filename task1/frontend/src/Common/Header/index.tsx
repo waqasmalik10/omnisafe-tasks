@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Logo from 'assets/images/logo.png'
 import { useAppDispatch, useAppSelector } from 'App/hooks';
 import { logoutAction, selectUser } from 'App/reducers/authSlice';
 
@@ -55,12 +54,7 @@ const Header = () => {
                 <div className="relative flex justify-between xl:grid xl:grid-cols-12 lg:gap-8">
                     
                     <div className="flex md:absolute md:left-0 md:inset-y-0 lg:static xl:col-span-2">
-                        <div className="flex-shrink-0 flex items-center">
-                            <NavLink to='/'>
-                                <img className="block lg:hidden h-8 w-auto" src={Logo} alt="Appointment App" />
-                                <img className="hidden lg:block h-8 w-auto" src={Logo} alt="Appointment App" />
-                            </NavLink>
-                        </div>
+                       
                     </div>
 
                     <div className="min-w-0 flex-1 md:px-8 lg:px-0 xl:col-span-6 xl:ml-20">
